@@ -5,21 +5,22 @@ include '../Components/header.php';
 if (isset($_POST['email'])) {
 
     $email = $_POST['email'];
-    $password = $_POST['passwords'];
+    $password = $_POST['password'];
 
-    $connection =  mysqli_connect("localhost", "root", "", "myproject");
+    $connection =  mysqli_connect("localhost", "root", "", "project");
 
-    $query = "SELECT * FROM tblusers WHERE email = '$email' && passwords = '$password'";
+    $query = "SELECT * FROM tblusers WHERE email = '$email' AND password = '$password'";
 
-    $result = mysqli_query($connection, $query);
+    
+    $conn = new mysqli("localhost","root",  "",  "project");
 
-    if (mysqli_num_rows($result) == 1) {
-        header("Location: Home.php");
-    } else {
-
-        header("Location: Login.php");
-    }
-}
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    
+    
+        header("Location: Loginout.php");
+    } 
+}    
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">

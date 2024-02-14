@@ -9,25 +9,43 @@ if (isset($_POST['name'])) {
     $profilePicture = $_FILES['ProfilePicture'];
     $profilePictureName =  $profilePicture['name'];
     $profilePictureTmpName =  $profilePicture['tmp_name'];
+    $query2 = "SELECT * FROM tblUsers WHERE email = '$email'";
+    $connection = mysqli_connect("localhost", "root", "", "project");
 
-    move_uploaded_file($profilePictureTmpName, '../Image/Users/' . $profilePictureName);
+    // Rest of your code using $connection
+    
+    $query2 = "SELECT * FROM tblUsers WHERE email = '$email'";
+    $result2 = mysqli_query($connection, $query2);
+
+    if (mysqli_num_rows($result2) > 0) {
+?>
+        <script>
+            alert("This Email Is Already Taken");
+        </script>
+<?php
+    }
+
+
+
+       move_uploaded_file($profilePictureTmpName, '../Image/' . $profilePictureName);
 
     $connection =  mysqli_connect("localhost", "root", "", "project");
 
-    $query = "INSERT INTO tblusers (name , email , password ,profilePicture) VALUES ('$name' , '$email' , '$password' , '$profilePictureName')";
+    $query = "INSERT INTO tblusers (name , email , passwords ,profilePicture) VALUES ('$name' , '$email' , '$password' , '$profilePictureName')";
 
-    $result = mysqli_query($connection, $query);
-
+    $result = mysqli_query($connection , $query);
 
     if ($result == true) {
-        header("Location: login.php");
+        header("Location: Loginout.php");
     } else {
         echo "Account Not Created";
+    
     }
+
 }
 
-?>
 
+?>
 <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="name" class="form-label">Name</label>
@@ -126,6 +144,5 @@ if (isset($_POST['name'])) {
         }
     });
 </script>
-
 
 <p>Already Have An Account <a href="login.php">Login</a></p>
