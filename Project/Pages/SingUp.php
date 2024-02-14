@@ -10,7 +10,7 @@ if (isset($_POST['name'])) {
     $profilePictureName =  $profilePicture['name'];
     $profilePictureTmpName =  $profilePicture['tmp_name'];
     $query2 = "SELECT * FROM tblUsers WHERE email = '$email'";
-    $connection = mysqli_connect("localhost", "root", "", "project");
+    $connection = mysqli_connect("localhost", "root", "", "myproject");
 
     // Rest of your code using $connection
     
@@ -29,9 +29,10 @@ if (isset($_POST['name'])) {
 
        move_uploaded_file($profilePictureTmpName, '../Image/' . $profilePictureName);
 
-    $connection =  mysqli_connect("localhost", "root", "", "project");
+    $connection =  mysqli_connect("localhost", "root", "", "myproject");
 
-    $query = "INSERT INTO tblusers (name , email , passwords ,profilePicture) VALUES ('$name' , '$email' , '$password' , '$profilePictureName')";
+
+    $query = "INSERT INTO tblusers (name , email , passwords ,profilepicture) VALUES ('$name' , '$email' , '$password' , '$profilePictureName')";
 
     $result = mysqli_query($connection , $query);
 

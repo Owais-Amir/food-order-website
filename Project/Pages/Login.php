@@ -7,14 +7,29 @@ if (isset($_POST['email'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $connection =  mysqli_connect("localhost", "root", "", "project");
+    $connection =  mysqli_connect("localhost", "root", "", "myproject");
 
-    $query = "SELECT * FROM tblusers WHERE email = '$email' AND password = '$password'";
+    $query = "SELECT * FROM tblusers WHERE email = '$email' AND passwords = '$password'";
 
     
-    $conn = new mysqli("localhost","root",  "",  "project");
+    $result = mysqli_query($connection, $query);
+	
+	if (mysqli_num_rows($result) > 0) {
+?>
+        <script>
+            alert("Login successful.");
+        </script>
+		
+		
+<?php
+		header("Location: menu.php");
+    }
+	else
+	{
+		echo "Login failed!";
+	}
 
-    if ($conn->connect_error) {
+    if ($connection->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     
     
