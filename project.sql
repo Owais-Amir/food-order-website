@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2024 at 12:55 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Feb 14, 2024 at 07:26 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `myproject`
+-- Database: `project`
 --
 
 -- --------------------------------------------------------
@@ -45,6 +45,67 @@ INSERT INTO `tbladmincreate` (`id`, `name`, `email`, `passwords`, `userType`, `p
 (13, 'kainat', 'kainat@gmail.com', '999', 1, 'Screenshot (56).png'),
 (15, 'hamza', 'hamza@gmail.com', '333', 1, 'Screenshot (49).png'),
 (16, 'sana', 'sana@gmail.com', '444', 1, 'Screenshot (157).png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblcategories`
+--
+
+CREATE TABLE `tblcategories` (
+  `categoryId` int(11) NOT NULL,
+  `categoryName` varchar(40) DEFAULT NULL,
+  `Description` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblcustomers`
+--
+
+CREATE TABLE `tblcustomers` (
+  `CustomerId` int(11) NOT NULL,
+  `CustomerName` varchar(20) DEFAULT NULL,
+  `ContactName` varchar(30) DEFAULT NULL,
+  `Address` varchar(40) DEFAULT NULL,
+  `City` varchar(35) DEFAULT NULL,
+  `PostalCode` int(25) DEFAULT NULL,
+  `Country` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblcustomers`
+--
+
+INSERT INTO `tblcustomers` (`CustomerId`, `CustomerName`, `ContactName`, `Address`, `City`, `PostalCode`, `Country`) VALUES
+(102, 'ali', 'hafsa ahmed', 'malir', 'thata', 2119, 'somalia'),
+(132, 'awais', 'hasan ali', 'kismayo', 'galkacyo', 322, 'qatar'),
+(1007, 'farah', 'marai anders', 'gulshan', 'mogadisho', 1229, 'somalia'),
+(1023, 'abdi', 'alia jon', 'xamar', 'gedo', 1338, 'pakistan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tblproducts`
+--
+
+CREATE TABLE `tblproducts` (
+  `productId` int(11) NOT NULL,
+  `productName` varchar(30) DEFAULT NULL,
+  `productPrice` int(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `tblproducts`
+--
+
+INSERT INTO `tblproducts` (`productId`, `productName`, `productPrice`) VALUES
+(101, 'peanut', 20),
+(121, 'Chang', 60),
+(132, 'Uncle Bobs Organic Dried Pears', 50),
+(292, 'powder shake', 80),
+(312, 'BBQ', 70);
 
 -- --------------------------------------------------------
 
@@ -93,7 +154,9 @@ INSERT INTO `tblusers` (`id`, `name`, `email`, `passwords`, `profilepicture`) VA
 (3, 'test', 'test223@gmail.com', '223', 'Screenshot (56).png'),
 (4, 'asad', 'asad@gamil.com', '454', 'Screenshot (147).png'),
 (5, 'fiza', 'fiza@gmail.com', '1212', 'Screenshot (62).png'),
-(6, 'Atqan', 'Atqan@gmail.com', '909', 'Screenshot (58).png');
+(6, 'Atqan', 'Atqan@gmail.com', '909', 'Screenshot (58).png'),
+(7, 'kainat', 'kainat21@gmail.com', '999', 'rent.PNG'),
+(9, 'yonis', 'yonis22@gmail.com', '222', 'rent.PNG');
 
 --
 -- Indexes for dumped tables
@@ -105,6 +168,24 @@ INSERT INTO `tblusers` (`id`, `name`, `email`, `passwords`, `profilepicture`) VA
 ALTER TABLE `tbladmincreate`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `tblcategories`
+--
+ALTER TABLE `tblcategories`
+  ADD PRIMARY KEY (`categoryId`);
+
+--
+-- Indexes for table `tblcustomers`
+--
+ALTER TABLE `tblcustomers`
+  ADD PRIMARY KEY (`CustomerId`);
+
+--
+-- Indexes for table `tblproducts`
+--
+ALTER TABLE `tblproducts`
+  ADD PRIMARY KEY (`productId`);
 
 --
 -- Indexes for table `tbluersdata`
@@ -131,10 +212,28 @@ ALTER TABLE `tbladmincreate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT for table `tblcategories`
+--
+ALTER TABLE `tblcategories`
+  MODIFY `categoryId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tblcustomers`
+--
+ALTER TABLE `tblcustomers`
+  MODIFY `CustomerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1024;
+
+--
+-- AUTO_INCREMENT for table `tblproducts`
+--
+ALTER TABLE `tblproducts`
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=313;
+
+--
 -- AUTO_INCREMENT for table `tblusers`
 --
 ALTER TABLE `tblusers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
